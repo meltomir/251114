@@ -1,17 +1,16 @@
 // src/Hero.tsx
 import { MarbleCanvas } from "./MarbleCanvas";
-
-const base = import.meta.env.BASE_URL; // dev: "/", GitHub Pages: "/251114/"
+import { withBase } from "./lib/asset";
 
 export default function Hero() {
   return (
     <section className="relative flex h-[calc(100vh-80px)] w-full bg-[#F4F1EA] overflow-hidden">
-      {/* Left: Marble */}
+      {/* ───────── Left: Marble ───────── */}
       <div className="relative h-full w-[28vw] min-w-[240px] overflow-hidden">
         <MarbleCanvas />
       </div>
 
-      {/* Right: Copy */}
+      {/* ───────── Right: Copy ───────── */}
       <div className="relative flex flex-1 items-center justify-end px-8 md:px-16 lg:px-24">
         <div className="w-full max-w-[640px] text-right">
           <div className="mb-12">
@@ -26,7 +25,7 @@ export default function Hero() {
               Melt the shapes.
             </p>
             <p
-              className="font-semibold leading-[0.9] text-black"
+              className="font-semibold leading-[0.9] text-[#000000]"
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontSize: "clamp(48px, 6vw, 88px)",
@@ -39,18 +38,41 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Bottom-right: shape + star */}
+      {/* ───────── Bottom-right: shape + star ───────── */}
       <div className="pointer-events-none fixed bottom-6 right-6 z-30">
-        <div className="relative w-[160px] h-[160px] overflow-hidden">
+        <div
+          style={{
+            position: "relative",
+            width: "160px",
+            height: "160px",
+            overflow: "hidden",
+          }}
+        >
+          {/* public/shape.png を BASE_URL 経由で参照 */}
           <img
-            src={`${base}shape.png`}
+            src={withBase("shape.png")}
             alt="shape"
-            className="absolute inset-0 w-full h-full object-contain"
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "contain",
+            }}
           />
+          {/* public/star.png を BASE_URL 経由で参照（ちょこんと 200px） */}
           <img
-            src={`${base}star.png`}
+            src={withBase("star.png")}
             alt="star"
-            className="absolute right-[-4px] bottom-[-4px] w-[200px] h-[200px] object-contain opacity-90"
+            style={{
+              position: "absolute",
+              right: "-4px",
+              bottom: "-4px",
+              width: "200px",
+              height: "200px",
+              objectFit: "contain",
+              opacity: 0.9,
+            }}
           />
         </div>
       </div>

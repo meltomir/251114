@@ -1,34 +1,19 @@
 // src/Hero.tsx
 import { MarbleCanvas } from "./MarbleCanvas";
 
+const base = import.meta.env.BASE_URL; // dev: "/", GitHub Pages: "/251114/"
+
 export default function Hero() {
   return (
-    <section
-      className="relative w-full bg-[#F4F1EA] overflow-hidden"
-      style={{ minHeight: "100vh", display: "flex" }} // ← 強制的に横並び
-    >
-      {/* ───────── Left: Marble（画面の左側ぜんぶ） ───────── */}
-      <div
-        className="relative overflow-hidden"
-        style={{
-          width: "26vw",    // 左カラムの幅
-          minWidth: 260,
-          height: "100vh",  // 画面の高さぜんぶ
-        }}
-      >
+    <section className="relative flex h-[calc(100vh-80px)] w-full bg-[#F4F1EA] overflow-hidden">
+      {/* Left: Marble */}
+      <div className="relative h-full w-[28vw] min-w-[240px] overflow-hidden">
         <MarbleCanvas />
       </div>
 
-      {/* ───────── Right: Copy ───────── */}
-      <div
-        className="relative flex-1 px-8 md:px-16 lg:px-24"
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <div className="w-full max-w-[720px] text-left">
+      {/* Right: Copy */}
+      <div className="relative flex flex-1 items-center justify-end px-8 md:px-16 lg:px-24">
+        <div className="w-full max-w-[640px] text-right">
           <div className="mb-12">
             <p
               className="italic leading-[1.05] text-[#2D2D2D]"
@@ -41,7 +26,7 @@ export default function Hero() {
               Melt the shapes.
             </p>
             <p
-              className="font-semibold leading-[0.9] text-[#000000]"
+              className="font-semibold leading-[0.9] text-black"
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontSize: "clamp(48px, 6vw, 88px)",
@@ -54,40 +39,18 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ───────── Bottom-right: Shape + Star ───────── */}
+      {/* Bottom-right: shape + star */}
       <div className="pointer-events-none fixed bottom-6 right-6 z-30">
-        <div
-          style={{
-            position: "relative",
-            width: "160px",
-            height: "160px",
-            overflow: "visible",
-          }}
-        >
-          {/* shape */}
+        <div className="relative w-[160px] h-[160px] overflow-hidden">
           <img
-            src="/shape.png"
+            src={`${base}shape.png`}
             alt="shape"
-            style={{
-              width: "160px",
-              height: "auto",
-              display: "block",
-            }}
+            className="absolute inset-0 w-full h-full object-contain"
           />
-
-          {/* star（200px のまま） */}
           <img
-            src="/star.png"
+            src={`${base}star.png`}
             alt="star"
-            style={{
-              position: "absolute",
-              right: "-40px",
-              bottom: "-40px",
-              width: "200px",
-              height: "200px",
-              opacity: 0.9,
-              objectFit: "contain",
-            }}
+            className="absolute right-[-4px] bottom-[-4px] w-[200px] h-[200px] object-contain opacity-90"
           />
         </div>
       </div>

@@ -2,8 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- index.html -->
-    <link rel="icon" type="image/svg+xml" href="./vite.svg" />
+    <!-- favicon は相対パスで public/ を参照（Pagesでも安全） -->
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <!-- PNG を使うなら ↑ を削除して下を使う -->
+    <!-- <link rel="icon" href="./favicon.png" type="image/png" sizes="32x32" /> -->
+
+    <!-- iOS（ホーム追加）用があれば -->
+    <!-- <link rel="apple-touch-icon" href="./apple-touch-icon.png" /> -->
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>251114</title>
     <script type="module" crossorigin src="/251114/assets/index-CTFTiXaK.js"></script>
@@ -11,5 +17,6 @@
   </head>
   <body>
     <div id="root"></div>
+    <!-- ↓ ここは開発用のままでOK（ビルド時にViteが自動書き換えます） -->
   </body>
 </html>
